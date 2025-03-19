@@ -21,6 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia el resto del proyecto
 COPY . /app/
 
+# Genera los archivos comprimidos ANTES de collectstatic
+RUN python manage.py compress --force
 
 # Expone el puerto
 EXPOSE 8000
