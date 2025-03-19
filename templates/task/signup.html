@@ -1,0 +1,120 @@
+{% extends 'task/base.html' %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+
+{% block content %}
+    <section class="bg-gray-50 dark:bg-gray-900 pt-2">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto mt-2 lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
+                        Create an account
+                    </h1>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {% if error %}
+                            <div id="error-alert" class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+                                 role="alert">
+                                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                    <span class="font-medium">{{ error }}</span>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                            <div>
+                                <label for="first_name"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                    Name</label>
+                                <input type="text" name="first_name" id="first_name"
+                                       class="input-tailwind"
+                                       placeholder="First Name" required="">
+                            </div>
+                            <div>
+                                <label for="last_name"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                    Name</label>
+                                <input type="text" name="last_name" id="last_name"
+                                       class="input-tailwind"
+                                       placeholder="Last Name" required="">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" name="email" id="email"
+                                   class="input-tailwind"
+                                   placeholder="name@company.com" required="">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                            <div>
+                                <label for="password"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <input type="password" name="password1" id="password" placeholder="••••••••••"
+                                       class="input-tailwind"
+                                       required="">
+                            </div>
+                            <div>
+                                <label for="confirm-password"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+                                    password</label>
+                                <input type="password" name="password2" id="confirm-password" placeholder="••••••••••"
+                                       class="input-tailwind"
+                                       required="">
+                            </div>
+                        </div>
+                        <div class="mb-4 mt-2">
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Requisitos de
+                                contraseña:</label>
+                            <ul class="text-sm text-gray-600 list-disc list-inside">
+                                <li>Al menos 8 caracteres</li>
+                                <li>Al menos una letra mayúscula</li>
+                                <li>Al menos una letra minúscula</li>
+                                <li>Al menos un número</li>
+                                <li>Al menos un carácter especial</li>
+                            </ul>
+                        </div>
+
+                        <!-- Elementos debajo del grid -->
+                        <div class="mt-6 flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="terms" aria-describedby="terms" type="checkbox"
+                                       class="focus:ring-3 checkbox-custom"
+                                       required="">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the
+                                    Terms and Conditions</label>
+                            </div>
+                        </div>
+
+                        <!-- Botón centrado -->
+                        <div class="mt-6 flex justify-center">
+                            <button type="submit"
+                                    class="button-flowbite">
+                                Create an account
+                            </button>
+                        </div>
+
+                        <!-- Texto de login -->
+                        <p class="mt-4 text-sm font-light text-gray-500 dark:text-gray-400 text-center">
+                            Already have an account?
+                            <a href="{% url 'login' %}"
+                               class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
