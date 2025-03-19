@@ -21,11 +21,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia el resto del proyecto
 COPY . /app/
 
-# Recopila archivos estáticos (esto se hace durante la construcción para optimizar la imagen)
-RUN python manage.py collectstatic --noinput
 
 # Expone el puerto en el que se ejecutará la aplicación
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
-CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 django_crud.wsgi:application"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput python manage.py migrate && gunicorn --bind 0.0.0.0:8000 django_crud.wsgi:application"]
