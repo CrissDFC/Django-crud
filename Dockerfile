@@ -1,21 +1,22 @@
-# Usa una imagen base de Python
+# Usa una imagen oficial de Python
 FROM python:3.13-slim
 
-# Establece el directorio de trabajo
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos de requisitos e instala las dependencias
-COPY requirements.txt .
+# Copiar archivos del proyecto
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto del código de la aplicación
-COPY . .
+# Copiar el resto del proyecto
+COPY . /app/
 
-# Recopila archivos estáticos
-RUN python manage.py collectstatic --noinput
+# Copiar el script de inicio
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-# Expone el puerto en el que se ejecutará la aplicación
-EXPOSE 80
+# Exponer el puerto
+EXPOSE 8000
 
-# Comando para ejecutar la aplicación
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:80 django_crud.wsgi:application"]
+# Ejecutar el script al arrancar el contenedor
+CMD ["/app/entrypoint.sh"]
