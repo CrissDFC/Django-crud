@@ -22,11 +22,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 
-# Ejecuta collectstatic antes del despliegue
-RUN python manage.py collectstatic --noinput
-
 # Expone el puerto
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
-CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 django_crud.wsgi:application"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 django_crud.wsgi:application"]
