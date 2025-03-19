@@ -1,5 +1,5 @@
 # Usa una imagen oficial de Python
-FROM python:3.10-slim
+FROM python:3.13-slim
 
 # Establece variables de entorno para evitar que Python escriba archivos .pyc
 ENV PYTHONDONTWRITEBYTECODE=1
