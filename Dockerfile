@@ -21,8 +21,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia el resto del proyecto
 COPY . /app/
 
-# Compila TailwindCSS si es necesario
-RUN npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --minify
 
 # Ejecuta collectstatic antes del despliegue
 RUN python manage.py collectstatic --noinput
