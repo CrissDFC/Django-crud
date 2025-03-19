@@ -18,4 +18,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 80
 
 # Comando para ejecutar la aplicación
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "django_crud.wsgi:application"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:80 django_crud.wsgi:application"]
