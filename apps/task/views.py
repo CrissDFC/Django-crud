@@ -225,10 +225,10 @@ def task_edit(request, task_id):
         :rtype: HttpResponse
     """
     task_upt = get_object_or_404(Task, id=task_id, user=request.user)
-
+    form = TaskForm(instance=task_upt)
     if request.method == 'GET':
         return render(request, 'task/task_update.html', {
-            'form': task_upt,
+            'form': form,
         })
     else:
         form = TaskForm(request.POST, instance=task_upt)

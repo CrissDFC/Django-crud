@@ -31,7 +31,7 @@
                             de la tarea</label>
                         <input type="text" id="title" name="title" placeholder="Escribe el título de la tarea"
                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               required value="{{ form.title }}">
+                               required value="{{ form.instance.title }}">
                     </div>
 
                     <!-- Campo: Descripción -->
@@ -40,13 +40,13 @@
                         <textarea id="description" name="description" rows="4"
                                   placeholder="Escribe la descripción de la tarea"
                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                  required>{{ form.description }}</textarea>
+                                  required>{{ form.instance.description }}</textarea>
                     </div>
 
                     <!-- Campo: Prioridad (Importante) -->
                     <div class="mb-6">
                         <div class="flex items-center">
-                            <input id="priority" name="important" type="checkbox" {% if form.important %}checked{% endif %}
+                            <input id="priority" name="important" type="checkbox" {% if form.instance.important %}checked{% endif %}
                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="priority" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Marcar
                                 como importante</label>
